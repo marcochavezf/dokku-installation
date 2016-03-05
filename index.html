@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Dokku Installation by marcochavezf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Dokku Installation</h1>
+        <p>Instructions to install dokku for Node.js and MongoDB in an Ubuntu instance</p>
+
+        <p class="view"><a href="https://github.com/marcochavezf/dokku-installation">View the Project on GitHub <small>marcochavezf/dokku-installation</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/marcochavezf/dokku-installation/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/marcochavezf/dokku-installation/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/marcochavezf/dokku-installation">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <ul>
+<li><p>Create a droplet with Ubuntu</p></li>
+<li><p>Install dokku (<a href="http://dokku.viewdocs.io/dokku/installation/">http://dokku.viewdocs.io/dokku/installation/</a>):</p></li>
+</ul>
+
+<p>installs dokku via apt-get</p>
+
+<p><code>wget https://raw.githubusercontent.com/dokku/dokku/v0.4.13/bootstrap.sh</code></p>
+
+<p><code>sudo DOKKU_TAG=v0.4.13 bash bootstrap.sh</code></p>
+
+<ul>
+<li><p>Config dokkut vía web browser (it’s recomendable to point dns to IP droplet).</p></li>
+<li><p>Create the app (<a href="http://dokku.viewdocs.io/dokku/application-deployment/">http://dokku.viewdocs.io/dokku/application-deployment/</a>):</p></li>
+</ul>
+
+<p><code>dokku apps:create ruby-rails-sample</code></p>
+
+<ul>
+<li>Install mongodb plugin:</li>
+</ul>
+
+<p>"install the postgres plugin"</p>
+
+<p>"plugin installation requires root, hence the user change"</p>
+
+<p><code>dokku plugin:install https://github.com/dokku/dokku-mongo.git mongo</code></p>
+
+<p>"create a postgres service with the name rails-database"</p>
+
+<p><code>dokku mongo:create rails-database</code></p>
+
+<ul>
+<li>Link the database created with the app:</li>
+</ul>
+
+<p>"each official datastore offers a <code>link</code> method to link a service to any application"</p>
+
+<p><code>dokku mongo:link rails-database ruby-rails-sample</code></p>
+
+<ul>
+<li>Deploy the app:</li>
+</ul>
+
+<p><code>git remote add dokku</code> </p>
+
+<p><code>dokku@midomain.tld:ruby-rails-sample</code></p>
+
+<p><code>git push dokku master</code></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/marcochavezf">marcochavezf</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-74719054-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
